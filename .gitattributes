@@ -1,0 +1,6 @@
+**/.git*         text
+**/.editorconfig text
+**/*.html        text diff=html
+**/*.css         text diff=css
+**/*.js          text
+**/*.rb          text diff=ruby

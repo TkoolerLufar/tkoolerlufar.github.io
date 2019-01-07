@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+@media print {
+  div.head {
+    display: none;
+  }
+}
+
+@media screen {
+  body {
+    background: url("../images/bg.png");
+    margin: 0;
+    overflow: scroll;
+    text-align: center;
+  }
+
+  div.super {
+    background: white;
+    width: 100%;
+    max-width: 980px;
+    margin: auto;
+    text-align: left;
+  }
+
+  div.head {
+    display: block;
+  }
+}
+
+body {
+  color: black;
+}
+
+span.access_counter {
+  float: left;
+  color: #6699cc;
+  font: small sans-serif;
+}
+
+div.head h1 {
+  padding: 0 0.5em 0 0;
+  font: italic xx-large serif;
+  text-align: right;
+}
+
+div.head h1 a {
+  color: silver;
+  text-decoration: none;
+}
+
+div.menu {
+  background: #99ccff;
+  padding: 0.5em;
+  text-align: center;
+  line-height: 1.5em;
+  font: medium monospace;
+}
+
+div.menu a {
+  margin: 0.5em;
+  color: black;
+  text-decoration: overline underline;
+}
+
+div.menu a:visited {
+  color: gray;
+}
+
+div.menu a:hover {
+  color: blue;
+}
+
+div.body {
+  padding: 0.5em;
+}
+
+div.foot {
+  text-align: center;
+  padding: 0.5em;
+}
+
+span.tag {
+  font-size: 0.75em;
+  border: outset 0.25em silver;
+  border-bottom: none;
+}
+
+a[name="top"]:empty {
+  position: absolute;
+  left: 0;
+  top: 0;
+}

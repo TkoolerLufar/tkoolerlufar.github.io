@@ -1,0 +1,46 @@
+{% assign title = 'Permanent Creation' %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% if page.subtitle %}
+    {{ page.subtitle | join: ' - ' | escape }} - {{ title }}
+  {% else %}
+    {{ title }}
+  {% endif %}</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/common.css">
+  {% for href in page.special_styles %}
+  <link rel="stylesheet" type="text/css" href="/css/{{href|url_encode}}">
+  {% endfor %}
+</head>
+<body>
+<div class="super">
+  <a name="top"></a>
+  <div class="head">
+    <h1><a href="/">Permanent<br>Creation</a></h1>
+    <div class="menu">
+      <a href="/about/">About</a>
+      <a href="/games/">Games</a>
+      <a href="/script/">JavaScript</a>
+      <a href="/softwares/">Softwares</a>
+      <a href="/materials/">Materials</a>
+      <a href="/bbs/">BBS</a>
+      <a href="/diary/">Diary</a>
+      <a href="/links/">Links</a>
+    </div>
+  </div>
+  <div class="body">
+{{ content }}
+  </div>
+  <div class="foot">
+    <a href="#top">&uarr;Go top&uarr;</a><br>
+    Copyright&copy;2003-2019 Lufar<br>
+  </div>
+</div>
+{% for href in page.scripts %}
+<script type="text/javascript" src="/scripts/{{href|url_encode}}"></script>
+{% endfor %}
+</body>
+</html>
