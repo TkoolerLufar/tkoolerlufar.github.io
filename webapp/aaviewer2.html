@@ -1,0 +1,46 @@
+---
+layout: default
+subtitle:
+- Web アプリ
+- AAビューア
+---
+<table border="1" cellpadding="0" style='font: 12pt "ＭＳ Ｐゴシック";'>
+<tr><td id="aa_html"></td></tr>
+</table><br>
+<br>
+<a href="http://www.2ch.net/" target="_blank">２ちゃんねる</a>で使うときはこちらをコピペしてください。↓<br>
+<textarea id="aa2" style="width: 95%; height: 30em;" readonly="readonly"></textarea><br>
+<br>
+HTMLバージョン（通常）↓<br>
+<input id="aa_html2" type='text' style='width: 95%;'><br>
+<br>
+HTMLバージョン（枠なし表入り）↓<br>
+<input id="aa_html2_table" type='text' style='width: 95%;'><br>
+<br>
+HTMLバージョン（枠あり）↓<br>
+<input id="aa_html2_table_border" type='text' style='width: 95%;'>
+<hr>
+<a href="javascript:window.history.back(1);">戻る</a>
+<script>
+  (function() {
+    var matches = /^\?aa=(.*)$/.exec(location.search);
+    if(matches) {
+      var aa = decodeURIComponent(matches[1].replace(/\+/g,' '))
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+      document.getElementById("aa2").value = aa;
+      var aa_html = aa
+        .replace(/\r\n/g, "<BR>")
+        .replace(/\n/g, "<bR>")
+        .replace(/\r/g, "<Br>");
+      document.getElementById("aa_html").innerHTML = aa_html;
+      document.getElementById("aa_html2").value =
+        aa_html;
+      document.getElementById("aa_html2_table").value =
+        '<table border="0"><tr><td>'+aa_html+'</td></tr></table>';
+        document.getElementById("aa_html2_table_border").value =
+        '<table border="1"><tr><td>'+aa_html+'</td></tr></table>';
+    }
+  })();
+</script>

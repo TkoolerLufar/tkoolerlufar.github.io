@@ -1,0 +1,46 @@
+---
+layout: default
+subtitle:
+- Web アプリ
+- RGB→#****** 変換機
+---
+<script language="JavaScript" type="text/javascript">
+function makeColorCode() {
+	var red, green, blue;
+	if((document.rgb.red.value + document.rgb.green.value + document.rgb.blue.value).match(/\D/)) {
+		alert("半角の数字のみ入力可能です。");
+		return false;
+	}
+	red   = parseInt(document.rgb.red.value);
+	green = parseInt(document.rgb.green.value);
+	blue  = parseInt(document.rgb.blue.value);
+	if(red < 0x00 || red > 0xFF || green < 0x00 || green > 0xFF || blue < 0x00 || blue > 0xFF) {
+		alert("0以上255以下の整数でなければなりません。");
+		return false;
+	}
+	if(red + green + blue >= 382.5) document.rgb.result.style.color="#000000";
+	else                            document.rgb.result.style.color="#FFFFFF";
+	document.rgb.result.style.backgroundColor = document.rgb.code.value = "#" +
+		(red <  0x10 ? "0" : "") +
+		(red == 0x00 ? "0" : "") +
+		(red == 0x00 && green <  0x10 ? "0" : "") +
+		(red == 0x00 && green == 0x00 ? "0" : "") +
+		(red == 0x00 && green == 0x00 && blue <  0x10 ? "0" : "") +
+		((red << 16) + (green << 8) + blue).toString(16);
+	document.rgb.result.value="こんな感じ";
+	return false;
+}
+</script>
+<H1 style="text-align: center;">～RGB&rarr;#****** 変換機～</h1>
+
+<form name="rgb" action="get" onsubmit="return makeColorCode();">
+<table border="1">
+<tr><td>赤<input name="red" type="text" size="3" value="0"></td><td rowspan="3">RGB値<input name="code" type="text" size="10" value="#000000" readonly="readonly"></td><td rowspan="3"><input type="submit" value="変換"></td></tr>
+<tr><td>緑<input name="green" type="text" size="3" value="0"></td></tr>
+<tr><td>青<input name="blue" type="text" size="3" value="0"></td></tr>
+</table>
+<input name="result" type="text" style="width: 50%; background: #FFFFFF; color: #000000;" value="JavaScriptが使えないか、現在読み込み中です。" readonly="readonly">
+</form>
+<script language="JavaScript" type="text/javascript">
+document.rgb.result.value = "ここに結果が表示されます。";
+</script>
