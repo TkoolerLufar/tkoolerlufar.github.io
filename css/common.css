@@ -48,7 +48,7 @@ div.head h1 a {
   text-decoration: none;
 }
 
-div.menu {
+ul.menu {
   background: #99ccff;
   padding: 0.5em;
   text-align: center;
@@ -56,17 +56,21 @@ div.menu {
   font: medium monospace;
 }
 
-div.menu a {
+ul.menu > li {
+  display: inline;
+}
+
+ul.menu a {
   margin: 0.5em;
   color: black;
   text-decoration: overline underline;
 }
 
-div.menu a:visited {
+ul.menu a:visited {
   color: gray;
 }
 
-div.menu a:hover {
+ul.menu a:hover {
   color: blue;
 }
 

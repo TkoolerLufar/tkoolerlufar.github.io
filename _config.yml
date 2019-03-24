@@ -1,0 +1,10 @@
+defaults:
+  -
+    scope:
+      path: ''
+    values:
+      layout: default
+
+      # 全ページで使い回せる定数
+      title: Permanent Creation
+      contact_twitter: https://www.twitter.com/tkooler_lufar/
