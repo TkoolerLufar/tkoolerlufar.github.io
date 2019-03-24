@@ -4,3 +4,4 @@
 **/*.css         text diff=css
 **/*.js          text
 **/*.rb          text diff=ruby
+**/*.md          text
