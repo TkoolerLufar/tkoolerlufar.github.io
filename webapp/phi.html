@@ -1,0 +1,82 @@
+---
+layout: default
+subtitle:
+- Web アプリ
+- オイラー関数計算機
+---
+<script type="text/javascript">
+/**
+ * @function {number} オイラー関数
+ * @param {number} n 正の整数
+ */
+function φ(n) {
+  // n=1 の場合
+  if(n == 1)
+    return 1;
+  // 因数を [1, √n] の範囲で探したいけど平方根計算は重そうなので n/2 まで探す
+  var K = n * 0.5;
+  for(var k = 2; k <= K; k++)
+    if(n % k == 0) {
+      if(n / k % k == 0) {
+        // n が k の 2 乗で割り切れる場合
+        return φ(n / k) * k;
+      } else {
+        // n が k では割り切れるが k の 2 乗では割り切れない場合
+        return φ(n / k) * (k - 1);
+      }
+    }
+  // n が素数の場合
+  return n - 1;
+}
+// ここまで φ(n) の定義 //
+function createPhiValueElement(n) {
+  var e = document.createElement('div')
+  e.appendChild(document.createTextNode('φ('+n+')='+φ(n)));
+  return e;
+}
+function createPhiEnumElements(n) {
+  n = Number(n);
+  if(!Number.isInteger(n)) {
+    alert('整数で入力してください。');
+    return [];
+  }
+  if(n < 1) {
+    alert('1 以上の整数で入力してください。');
+    return [];
+  }
+  if(n > Number.MAX_SAFE_INTEGER) {
+    alert(Number.MAX_SAFE_INTEGER + '以下の整数で入力してください。');
+    return [];
+  }
+  if(n >= 1000 && !confirm('重そうですがよろしいですか?')) {
+    return [];
+  }
+  var result = new Array(n);
+  for(var i = 1; i <= n; i++) {
+    result[i-1] = createPhiValueElement(i);
+  }
+  return result;
+}
+function resetResult() {}
+</script>
+<h1>何これ？</h1>
+<div>
+オイラー関数 &phi;(n) の値をパパっと計算するアプリです。<br>
+実装が気になる方は遠慮なくソースコード読んでください。
+</div>
+<div><a href="https://twitter.com/tkooler_lufar/status/878244407270547456?s=20">発想の発端</a></div>
+<script>
+document.write('<div>※ 1 から '+Number.MAX_SAFE_INTEGER+' までの整数を入力しないと正常に動きません。</div>');
+</script>
+<p><a href="./">戻る</a></p>
+<hr>
+<form action="" onsubmit="document.getElementById('result').appendChild(createPhiValueElement(this.n.value)); return false">
+<input type="number" id="n" min="1" value="1" max="9007199254740991" style="text-align:right">
+<input type="submit" value="Calculate">
+</form>
+<form action="" onsubmit="createPhiEnumElements(this.n2.value).forEach(function(e){document.getElementById('result').appendChild(e);}); return false">
+until
+<input type="number" id="n2" min="1" value="20" max="9007199254740991" style="text-align:right">
+<input type="submit" value="Calculate">
+</form>
+<p id="result"></p>

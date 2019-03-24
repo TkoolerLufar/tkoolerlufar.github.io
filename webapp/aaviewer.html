@@ -1,0 +1,44 @@
+---
+layout: default
+subtitle:
+- Web アプリ
+- AAビューア
+---
+<script type="text/javascript">
+function aav() {
+	var aa = window.document.a.aa.value;
+	var nbsp = "\x26nbsp;";
+	var i;
+	if (aa.charAt (0) == " " || aa.indexOf ("\n ") > -1 || aa.indexOf ("\r ") > -1) {
+		if (window.confirm ("行頭に半角スペースがあります！\r\n修正しますか？")) {
+			if (aa.charAt (0) == " ")
+				aa = aa.substring (1,aa.length - 1);
+			for (i = aa.indexOf ("\n ",0);i > -1;i = aa.indexOf ("\n ",0))
+				aa = aa.replace ("\n ",("\n" + nbsp));
+			for (i = aa.indexOf ("\r ",0);i > -1;i = aa.indexOf ("\r ",0))
+				aa = aa.replace ("\r ",("\r" + nbsp));
+		}
+	}
+	if (aa.indexOf ("  ",0) > -1)
+		if (window.confirm ("半角スペースが連続しています！\r\n修正しますか？"))
+			while (aa.indexOf ("  ") > -1)
+				aa = aa.replace ("  ",(" " + nbsp));
+	window.document.aa.aa.value = aa;
+	window.document.aa.submit();
+}
+</script>
+<h1 onclick="aav();" style="text-align: center;">AAビューア</h1>
+～使い方～<br>
+<ol>
+<li>下にAAを入力します。</li>
+<li>上の「AAビューア」というところをクリックします。</li>
+<li>ずれの原因になるものが見つかったら警告が表示されます。<br>[OK]で修正できます。</li>
+<li>画面が切り替わったらAAが表示されるので<br>気に入ったら下のフォームのテキストをそのまま<br>２ちゃんねるのカキコ欄にコピペ出来ます。<br>不満なら戻ってやり直しです。</li>
+</ol>
+<br>※せっかく書いたAAのデータが消えても責任は負いません。<br>
+<form name="a" action="get">
+<textarea style='font-family: "ＭＳ Ｐゴシック",Mona;font-size:12pt; width: 95%; height: 20em;' name="aa"></textarea>
+</form>
+<form name="aa" action="aaviewer2.html" method="GET"><input type="hidden" name="aa"></form>
+<hr>
+<a href="./">戻る</a>

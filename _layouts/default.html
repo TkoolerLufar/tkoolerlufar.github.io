@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{% if page.subtitle %}
-    {{ page.subtitle | join: ' - ' | escape }} - {{ title }}
+    {{ page.subtitle | reverse | join: ' - ' | escape }} - {{ title }}
   {% else %}
     {{ title }}
   {% endif %}</title>
@@ -23,7 +23,7 @@
     <div class="menu">
       <a href="/about/">About</a>
       <a href="/games/">Games</a>
-      <a href="/script/">JavaScript</a>
+      <a href="/webapp/">Web Apps</a>
       <a href="/softwares/">Softwares</a>
       <a href="/materials/">Materials</a>
       <a href="/bbs/">BBS</a>

@@ -1,0 +1,50 @@
+---
+layout: default
+subtitle:
+- Web アプリ
+- 1行関数スクリプト
+---
+<SCRIPT TYPE="text/javascript">
+function makeOlf() {
+	var source, args;
+	source =
+		window.document.script.source.value
+			.replace(/\\/g,"\\\\")
+			.replace(/"/g,"\\\"")
+			.replace(/\n/g,"\\n")
+			.replace(/\r/g,"\\r")
+			.replace(/\s/g, " ");
+	args = window.document.script.args.value.replace(/\s*,\s*/g,"\",\"");
+	if(args.length == 0) {
+		window.document.script.result.value =
+			window.document.script.name.value +
+			" = new Function (\"" + source + "\");";
+	} else {
+		window.document.script.result.value =
+			window.document.script.name.value +
+			" = new Function (\"" + args + "\",\"" + source + "\");";
+	}
+	return false;
+}
+</SCRIPT>
+
+<P>JavaScriptの関数定義を1行でやってしまおうというスクリプトです。</P>
+<H1>使い方</H1>
+<OL>
+<LI>[関数名]にJavaScriptの関数名を入力する。</LI>
+<LI>[引数]に引数を入力する。</LI>
+<LI>[実行内容]に関数の実行内容を入力する。</LI>
+<LI>[出力]ボタンをクリックする。</LI>
+<LI>[結果]のフォーム内容をコピーする。</LI>
+<LI>適当なところに貼り付けて動作を確認すれば終わりです。</LI>
+</OL>
+<FORM NAME="script" ACTION="get"><TABLE><TBODY>
+<TR>
+<TD ALIGN="right">関数名</TD><TD><INPUT NAME="name"></TD></TR>
+<TR><TD ALIGN="right">引数（複数ある場合は半角カンマで区切る）</TD><TD><INPUT NAME="args"></TD></TR>
+<TR><TD ALIGN="right">実行内容</TD><TD><TEXTAREA NAME="source" ROWS="10" COLS="50"></TEXTAREA></TD></TR>
+<TR><TD ALIGN="right">結果</TD><TD><INPUT READONLY NAME="result"></TD></TR>
+<TR><TD ALIGN="center" COLSPAN=2><INPUT ONCLICK="return makeOlf();" TYPE="submit" VALUE="出力"></TD></TR>
+</TBODY></TABLE></FORM>
+<HR>
+<DIV><A HREF="./">戻る</A></DIV>
